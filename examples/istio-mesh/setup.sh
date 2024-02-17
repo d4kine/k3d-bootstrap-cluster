@@ -1,29 +1,42 @@
 #!/bin/bash
 set -o errexit
 
+source ../../helpers.sh
 source helpers.sh
 
-helm repo add kuma https://kumahq.github.io/charts
+GATEWAY_FLAG=No
+
+helm repo add istio https://istio-release.storage.googleapis.com/charts
 helm repo update
 
-installKumaStandalone
+echo "Installing istio base Helm chart..."
+installIstioBase
 
-KONG_EXISTS=$(kubectl get ns kong-cp || echo "false")
-if [ "$KONG_EXISTS" == "false" ]
-then
-cd ../kong-gateway/
-bash setup.sh
-else
-echo "Skipping kong deployment, already installed"
+echo "Installing istio kubernetes daemon Helm chart..."
+installIstioDaemon
+
+read_value "Enable Istio as default for all namespaces? ${yes_no}" "Yes"
+if (($(isYes ${INPUT_VALUE}) == 1)); then
+    kubectl label namespace default istio-injection=enabled
 fi
 
-cd ../kuma-mesh/
-configureMeshForKongIngress
-
-
-DEMO_DEPLOYED=$(kubectl get ns demo || echo "false")
-if [ "$DEMO_DEPLOYED" != "false" ]; then
-kubectl annotate ns demo kuma.io/sidecar-injection="enabled" --overwrite
-sleep 2 # wait to register the namespace as mesh-component by the controlplane
-kubectl -n demo delete po --all
+read_value "Install Istio Gateway and remove nginx-ingress? ${yes_no}" "${GATEWAY_FLAG}"
+GATEWAY_FLAG=$(isYes ${INPUT_VALUE})
+if (($GATEWAY_FLAG == 1)); then
+    kubectl create namespace istio-ingress
+    helm install istio-ingressgateway istio/gateway -n istio-ingress
+    helm uninstall ingress-nginx -n ingress-nginx
 fi
+
+
+read_value "Install demo application? ${yes_no}" "Yes"
+if (($(isYes ${INPUT_VALUE}) == 1)); then
+    kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/bookinfo/platform/kube/bookinfo.yaml
+
+    if (($GATEWAY_FLAG == 1)); then
+        kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/bookinfo/networking/bookinfo-gateway.yaml
+    fi
+fi
+
+
+echo "Everything setup! launch the demo app at http://localhost:8080/
