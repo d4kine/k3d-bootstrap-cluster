@@ -51,12 +51,12 @@ metadata:
   namespace: kong
   annotations:
     cert-manager.io/cluster-issuer: "vault-issuer"
-    cert-manager.io/common-name: "kong-gateway.example.com"
+    cert-manager.io/common-name: "kong-gateway.immofficient.com"
 spec:
   gatewayClassName: kong
   listeners:
     - name: https
-      hostname: "*.example.com"
+      hostname: "*.immofficient.com"
       port: 443
       protocol: HTTPS
       allowedRoutes:

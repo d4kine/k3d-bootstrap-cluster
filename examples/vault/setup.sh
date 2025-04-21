@@ -33,13 +33,13 @@ kubectl -n vault exec --stdin=true --tty=true vault-0 -- vault write /pki/config
 ###########
 
 # kubectl -n vault exec --stdin=true --tty=true vault-0 -- vault write pki/root/generate/internal \
-#     common_name=example.com \
+#     common_name=immofficient.com \
 #     ttl=8760h
 kubectl -n vault exec --stdin=true --tty=true vault-0 -- vault write pki/config/urls \
     issuing_certificates="http://vault.vault:8200/v1/pki/ca" \
     crl_distribution_points="http://vault.vault:8200/v1/pki/crl"
 kubectl -n vault exec --stdin=true --tty=true vault-0 -- vault write pki/roles/example-com \
-    allowed_domains=example.com \
+    allowed_domains=immofficient.com \
     allow_subdomains=true \
     max_ttl=72h
 kubectl -n vault exec --stdin=true vault-0 -- vault policy write pki - <<EOF
@@ -110,8 +110,8 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: vault-issuer
-  commonName: www.example.com
+  commonName: www.immofficient.com
   dnsNames:
-  - www.example.com' | kubectl apply -f -
+  - www.immofficient.com' | kubectl apply -f -
 
 kubectl -n demo apply -f cert-ingress.yaml

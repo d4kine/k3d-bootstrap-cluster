@@ -39,7 +39,7 @@ metadata:
 spec:
   ingressClassName: $INGRESS_CLASS_NAME
   rules:
-  - host: confluent.example.com
+  - host: confluent.immofficient.com
     http:
       paths:
       - path: /

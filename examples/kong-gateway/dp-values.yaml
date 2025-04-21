@@ -13,9 +13,9 @@ env:
   lua_ssl_trusted_certificate: /etc/secrets/kong-wildcard-crt/ca.crt
   cluster_ca_cert: /etc/secrets/kong-wildcard-crt/ca.crt
   cluster_mtls: pki
-  cluster_server_name: "kong-cluster.example.com"
+  cluster_server_name: "kong-cluster.immofficient.com"
   cluster_control_plane: "kong-kong-cluster.kong-cp.svc.cluster.local:8005"
-  cluster_telemetry_server_name: "kong-clustertelemetry.example.com"
+  cluster_telemetry_server_name: "kong-clustertelemetry.immofficient.com"
   cluster_telemetry_endpoint: "kong-kong-clustertelemetry.kong-cp.svc.cluster.local:8006"
   ssl_cert: /etc/secrets/kong-wildcard-crt/tls.crt
   ssl_cert_key: /etc/secrets/kong-wildcard-crt/tls.key

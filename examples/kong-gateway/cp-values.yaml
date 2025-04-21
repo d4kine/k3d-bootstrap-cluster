@@ -11,12 +11,12 @@ env:
   cluster_cert_key: /etc/secrets/kong-wildcard-crt/tls.key
   cluster_ca_cert: /etc/secrets/kong-wildcard-crt/ca.crt
   cluster_mtls: pki
-  cluster_server_name: "kong-cluster.example.com"
-  cluster_telemetry_server_name: "kong-clustertelemetry.example.com"
+  cluster_server_name: "kong-cluster.immofficient.com"
+  cluster_telemetry_server_name: "kong-clustertelemetry.immofficient.com"
   database: "postgres"
-  admin_gui_url: https://kong-manager.example.com:8081
-  admin_api_uri: https://kong-admin.example.com:8081
-  portal_api_url: https://kong-portalapi.example.com:8081
+  admin_gui_url: https://kong-manager.immofficient.com:8081
+  admin_api_uri: https://kong-admin.immofficient.com:8081
+  portal_api_url: https://kong-portalapi.immofficient.com:8081
   password:
     valueFrom:
       secretKeyRef:
@@ -68,10 +68,10 @@ admin:
     enabled: true
     ingressClassName: kong
     tls: kong-admin-crt
-    hostname: kong-admin.example.com
+    hostname: kong-admin.immofficient.com
     annotations:
       cert-manager.io/cluster-issuer: "vault-issuer"
-      cert-manager.io/common-name: "kong-admin.example.com"
+      cert-manager.io/common-name: "kong-admin.immofficient.com"
 
 status:
   enabled: true
@@ -92,10 +92,10 @@ cluster:
   ingress:
     enabled: false
     ingressClassName: kong
-    hostname: kong-cluster.example.com
+    hostname: kong-cluster.immofficient.com
     annotations:
       cert-manager.io/cluster-issuer: "vault-issuer"
-      cert-manager.io/common-name: "kong-cluster.example.com"
+      cert-manager.io/common-name: "kong-cluster.immofficient.com"
 
 proxy:
   enabled: false
@@ -187,10 +187,10 @@ manager:
     enabled: true
     tls: kong-manager-crt
     ingressClassName: kong
-    hostname: kong-manager.example.com
+    hostname: kong-manager.immofficient.com
     annotations:
       cert-manager.io/cluster-issuer: "vault-issuer"
-      cert-manager.io/common-name: "kong-manager.example.com"
+      cert-manager.io/common-name: "kong-manager.immofficient.com"
 
 portal:
   enabled: true
@@ -206,10 +206,10 @@ portal:
     enabled: true
     ingressClassName: kong
     tls: kong-portal-crt
-    hostname: kong-portal.example.com
+    hostname: kong-portal.immofficient.com
     annotations:
       cert-manager.io/cluster-issuer: "vault-issuer"
-      cert-manager.io/common-name: "kong-portal.example.com"
+      cert-manager.io/common-name: "kong-portal.immofficient.com"
 
 portalapi:
   enabled: true
@@ -225,10 +225,10 @@ portalapi:
     enabled: true
     ingressClassName: kong
     tls: kong-portalapi-crt
-    hostname: kong-portalapi.example.com
+    hostname: kong-portalapi.immofficient.com
     annotations:
       cert-manager.io/cluster-issuer: "vault-issuer"
-      cert-manager.io/common-name: "kong-portalapi.example.com"
+      cert-manager.io/common-name: "kong-portalapi.immofficient.com"
 
 clustertelemetry:
   enabled: true
@@ -240,5 +240,5 @@ clustertelemetry:
   ingress:
     enabled: true
     ingressClassName: kong
-    hostname: kong-clustertelemetry.example.com
+    hostname: kong-clustertelemetry.immofficient.com
     annotations: {}

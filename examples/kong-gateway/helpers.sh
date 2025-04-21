@@ -35,9 +35,9 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: vault-issuer
-  commonName: '*.example.com'
+  commonName: '*.immofficient.com'
   dnsNames:
-    - '*.example.com'" | kubectl apply -f -
+    - '*.immofficient.com'" | kubectl apply -f -
 
 helm upgrade --install kong kong/kong --values cp-values.yaml --namespace kong-cp --create-namespace
 }
@@ -66,9 +66,9 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: vault-issuer
-  commonName: '*.example.com'
+  commonName: '*.immofficient.com'
   dnsNames:
-    - '*.example.com'" | kubectl apply -f -
+    - '*.immofficient.com'" | kubectl apply -f -
 
 helm upgrade --install kong kong/kong --values dp-values.yaml --namespace kong-dp --create-namespace
 }

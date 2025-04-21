@@ -6,15 +6,15 @@ metadata:
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
     cert-manager.io/cluster-issuer: "vault-issuer"
-    cert-manager.io/common-name: "httpbin.example.com"
+    cert-manager.io/common-name: "httpbin.immofficient.com"
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - httpbin.example.com
+    - httpbin.immofficient.com
     secretName: httpbin-tls-secret
   rules:
-  - host: httpbin.example.com
+  - host: httpbin.immofficient.com
     http:
       paths:
       - path: /

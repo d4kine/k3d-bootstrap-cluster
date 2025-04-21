@@ -30,7 +30,7 @@ metadata:
 spec:
   ingressClassName: $INGRESS_CLASS_NAME
   rules:
-  - host: kuma-gui.example.com
+  - host: kuma-gui.immofficient.com
     http:
       paths:
       - path: /

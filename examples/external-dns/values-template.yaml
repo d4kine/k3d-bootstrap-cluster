@@ -6,7 +6,7 @@ servers:
   nodePort: 30053
   plugins:
   - name: etcd
-    parameters: example.com
+    parameters: immofficient.com
     configBlock: |-
       stubzones
       path /skydns
