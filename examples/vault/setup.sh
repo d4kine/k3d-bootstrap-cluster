@@ -38,14 +38,14 @@ kubectl -n vault exec --stdin=true --tty=true vault-0 -- vault write /pki/config
 kubectl -n vault exec --stdin=true --tty=true vault-0 -- vault write pki/config/urls \
     issuing_certificates="http://vault.vault:8200/v1/pki/ca" \
     crl_distribution_points="http://vault.vault:8200/v1/pki/crl"
-kubectl -n vault exec --stdin=true --tty=true vault-0 -- vault write pki/roles/example-com \
+kubectl -n vault exec --stdin=true --tty=true vault-0 -- vault write pki/roles/immofficient-com \
     allowed_domains=immofficient.com \
     allow_subdomains=true \
     max_ttl=72h
 kubectl -n vault exec --stdin=true vault-0 -- vault policy write pki - <<EOF
 path "pki*"                             { capabilities = ["read", "list"] }
-path "pki/sign/example-com"             { capabilities = ["create", "update"] }
-path "pki/issue/example-com"            { capabilities = ["create"] }
+path "pki/sign/immofficient-com"             { capabilities = ["create", "update"] }
+path "pki/issue/immofficient-com"            { capabilities = ["create"] }
 EOF
 kubectl -n vault exec --stdin=true --tty=true vault-0 -- vault auth enable kubernetes
 K8S_IP=$(kubectl -n vault exec vault-0 -- sh -c 'echo $KUBERNETES_PORT_443_TCP_ADDR')
@@ -90,7 +90,7 @@ metadata:
 spec:
   vault:
     server: http://vault.vault.svc.cluster.local:8200
-    path: pki/sign/example-com
+    path: pki/sign/immofficient-com
     auth:
       kubernetes:
         mountPath: /v1/auth/kubernetes
@@ -103,10 +103,10 @@ echo '
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: example-com
+  name: immofficient-com
   namespace: demo
 spec:
-  secretName: example-com-tls
+  secretName: immofficient-com-tls
   issuerRef:
     kind: ClusterIssuer
     name: vault-issuer
