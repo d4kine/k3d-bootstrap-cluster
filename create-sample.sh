@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit
 
-CLUSTER_NAME=demo
+CLUSTER_NAME=immofficient
 SERVERS=1
 AGENTS=1
 HTTP_PORT=80
