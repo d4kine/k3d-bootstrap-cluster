@@ -19,10 +19,6 @@ export K3D_FIX_MOUNTS=1
 
 # Configuration of cluster
 configValues
-if [ $DEMO_DOMAIN != "immofficient.com" ]
-then
-  configureEtcHosts
-fi
 uninstallCluster
 
 # Get actual directory

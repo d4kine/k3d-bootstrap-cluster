@@ -43,8 +43,8 @@ configValues ()
   REGISTRY_PORT=${INPUT_VALUE}
   HTTPBIN_NODEPORT=$((30000 + $RANDOM % 40000))
   EXTDNS_NODEPORT=$((30000 + $RANDOM % 40000))
-  read_value "Set Domain? ${yes_no}" "${DEMO_DOMAIN}"
-  HTTPBIN_SAMPLDEMO_DOMAINE_FLAG=$(isYes ${INPUT_VALUE})
+  #read_value "Set Domain? ${yes_no}" "${DEMO_DOMAIN}"
+  #HTTPBIN_SAMPLDEMO_DOMAINE_FLAG=$(isYes ${INPUT_VALUE})
   read_value "Install NGINX Ingress? ${yes_no}" "${NGINX_FLAG}"
   NGINX_FLAG=$(isYes ${INPUT_VALUE})
   read_value "Install Calico Network? ${yes_no}" "${CALICO_FLAG}"
@@ -65,17 +65,6 @@ isYes()
   fi
 }
 
-configureEtcHosts()
-{
-top "Creating DEMO_DOMAIN entry in /etc/hosts"
-# Prepare local /etc/hosts - add container registry hostname
-grep -qxF '# Local K8s registry' /etc/hosts || echo "# Local K8s registry
-127.0.0.1 ${REGISTRY_NAME}-${CLUSTER_NAME}.${DEMO_DOMAIN}
-127.0.0.1 ${CLUSTER_NAME}.${DEMO_DOMAIN}
-# End of section" | sudo tee -a /etc/hosts
-echo 'Created /etc/hosts entry for local registry!'
-bottom
-}
 
 uninstallCluster()
 {
