@@ -7,9 +7,9 @@ server:
     ingressClassName: "nginx"
     annotations:
       cert-manager.io/issuer: "vault-issuer"
-      cert-manager.io/common-name: "vault.127-0-0-1.nip.io"
+      cert-manager.io/common-name: "vault.immofficient.com"
     hosts:
-      - host: vault.127-0-0-1.nip.io
+      - host: vault.immofficient.com
         paths: []
   statefulSet:
     securityContext:

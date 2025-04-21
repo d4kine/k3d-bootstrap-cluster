@@ -27,4 +27,4 @@ The following components are installed with the *setup.sh*:
 
 ### Show Policy Reporter UI
 
-The Policy Reporter UI is exposed via Ingress, you can open Policy-Reporter-UI in a browser of your choice: https://policy-reporter-127-0-0-1.nip.io:8081/#/
+The Policy Reporter UI is exposed via Ingress, you can open Policy-Reporter-UI in a browser of your choice: https://policy-reporter-immofficient.com:8081/#/

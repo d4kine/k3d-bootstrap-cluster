@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: policy-reporter-127-0-0-1.nip.io
+    - host: policy-reporter-immofficient.com
       http:
         paths:
           - path: /

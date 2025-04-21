@@ -44,4 +44,4 @@ When you have added the Root CA to your system Truststore, or your browser the c
 
 ### Show Vault UI
 
-The vault UI is exposed via Ingress, you can open Vault-UI in a browser of your choice: https://vault.127-0-0-1.nip.io:8081/ui
+The vault UI is exposed via Ingress, you can open Vault-UI in a browser of your choice: https://vault.immofficient.com:8081/ui

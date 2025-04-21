@@ -26,7 +26,7 @@ bottom()
 
 configValues ()
 {
-  DEMO_DOMAIN=127-0-0-1.nip.io
+  DEMO_DOMAIN=immofficient.com
   REGISTRY_NAME=registry
   REGISTRY_FLAG=$(isYes "Yes")
   read_value "Cluster Name" "${CLUSTER_NAME}"
@@ -43,6 +43,8 @@ configValues ()
   REGISTRY_PORT=${INPUT_VALUE}
   HTTPBIN_NODEPORT=$((30000 + $RANDOM % 40000))
   EXTDNS_NODEPORT=$((30000 + $RANDOM % 40000))
+  read_value "Set Domain? ${yes_no}" "${DEMO_DOMAIN}"
+  HTTPBIN_SAMPLDEMO_DOMAINE_FLAG=$(isYes ${INPUT_VALUE})
   read_value "Install NGINX Ingress? ${yes_no}" "${NGINX_FLAG}"
   NGINX_FLAG=$(isYes ${INPUT_VALUE})
   read_value "Install Calico Network? ${yes_no}" "${CALICO_FLAG}"

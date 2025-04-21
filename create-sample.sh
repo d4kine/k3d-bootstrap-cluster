@@ -19,7 +19,7 @@ export K3D_FIX_MOUNTS=1
 
 # Configuration of cluster
 configValues
-if [ $DEMO_DOMAIN != "127-0-0-1.nip.io" ]
+if [ $DEMO_DOMAIN != "immofficient.com" ]
 then
   configureEtcHosts
 fi

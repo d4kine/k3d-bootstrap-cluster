@@ -47,6 +47,6 @@ spec:
       enabled: true
       className: "nginx"
       hosts:
-        - dashboard.127-0-0-1.nip.io
+        - dashboard.immofficient.com
 
 
